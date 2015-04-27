@@ -8,8 +8,8 @@ public class ContactCreationTests extends TestBase {
   
 	@Test
 	public void testNonEmptyContactCreation() throws Exception {
-	    openMainPage();	  
-		initNewContactCreation();
+	    app.getNavigationHelper().openMainPage();	  
+		app.getContactHelper().initNewContactCreation();
 		ContactData contact = new ContactData();
 	    Random rand = new Random();
 	    int randomDay = rand.nextInt(contact.bDayArray.length);
@@ -28,21 +28,21 @@ public class ContactCreationTests extends TestBase {
 		contact.groupName = "group1";
 		contact.address2 = "Santa Monica";
 		contact.homePhone2 = "165-77-12";
-		fillInContactForm(contact);
-		submitContactInfo();
-		returnToMainPage();
+		app.getContactHelper().fillInContactForm(contact);
+		app.getContactHelper().submitContactInfo();
+		app.getNavigationHelper().returnToMainPage();
 	}
 	
 	@Test
 	public void testEmptyContactCreation() throws Exception {
-		openMainPage();	  
-		initNewContactCreation();
+		app.getNavigationHelper().openMainPage();	  
+		app.getContactHelper().initNewContactCreation();
 		//ContactData contact = new ContactData();
 		//contact.bDay = "-";
 		//contact.bMonth = "-";
 		//fillInContactForm(contact);
-		submitContactInfo();
-		returnToMainPage();
+		app.getContactHelper().submitContactInfo();
+		app.getNavigationHelper().returnToMainPage();
 	}
 }
 
