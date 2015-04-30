@@ -39,4 +39,20 @@ public class ContactHelper extends HelperBase {
 	    click(By.name("submit"));
 	}
 
+	public void initContactEdit(int index) {
+		click(By.xpath("//table[@id='maintable']/tbody/tr[" + index + "]/td[7]"));
+		
+	}
+
+	public void submitContactModification() {
+		//By.name is retained specifically here to check test behavior
+		//click(By.xpath("//input[@value='Update']"));
+		click(By.name("update"));
+		
+	}
+
+	public void deleteContact() {
+		click(By.xpath("//input[@value='Delete']"));
+	}
+
 }
