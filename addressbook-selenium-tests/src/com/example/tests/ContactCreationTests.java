@@ -1,7 +1,11 @@
 package com.example.tests;
 
+import static org.testng.Assert.assertEquals;
+
 import org.testng.annotations.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class ContactCreationTests extends TestBase {
@@ -9,6 +13,11 @@ public class ContactCreationTests extends TestBase {
 	@Test
 	public void testNonEmptyContactCreation() throws Exception {
 	    app.getNavigationHelper().openMainPage();	  
+	    
+	    //get old contacts list
+	    List<ContactData> oldList = app.getContactHelper().getContacts();
+	    
+	    //actions
 		app.getContactHelper().initNewContactCreation();
 		ContactData contact = new ContactData();
 	    Random rand = new Random();
@@ -31,18 +40,40 @@ public class ContactCreationTests extends TestBase {
 		app.getContactHelper().fillInContactForm(contact);
 		app.getContactHelper().submitContactInfo();
 		app.getNavigationHelper().returnToMainPage();
+		
+		//get new contacts list
+	    List<ContactData> newList = app.getContactHelper().getContacts();
+	    
+		//compare lists
+	    oldList.add(contact);
+	    Collections.sort(oldList);
+	    assertEquals(oldList, newList);
 	}
 	
 	@Test
 	public void testEmptyContactCreation() throws Exception {
 		app.getNavigationHelper().openMainPage();	  
+		
+	    //get old contacts list
+	    List<ContactData> oldList = app.getContactHelper().getContacts();
+		
 		app.getContactHelper().initNewContactCreation();
-		//ContactData contact = new ContactData();
-		//contact.bDay = "-";
-		//contact.bMonth = "-";
-		//fillInContactForm(contact);
+		ContactData contact = new ContactData();
+		contact.firstName = "";
+		contact.lastName = "";
+		contact.bDay = "-";
+		contact.bMonth = "-";
+		app.getContactHelper().fillInContactForm(contact);
 		app.getContactHelper().submitContactInfo();
 		app.getNavigationHelper().returnToMainPage();
+		
+		//get new contacts list
+	    List<ContactData> newList = app.getContactHelper().getContacts();
+	    
+		//compare lists
+	    oldList.add(contact);
+	    Collections.sort(oldList);
+	    assertEquals(oldList, newList);
 	}
 }
 
