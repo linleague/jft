@@ -1,5 +1,6 @@
 package com.example.tests;
 
+
 public class ContactData implements Comparable<ContactData>{
 	public String firstName;
 	public String lastName;
@@ -27,6 +28,7 @@ public class ContactData implements Comparable<ContactData>{
 		for (int i=1;i<=31;i++) {
 			bDayArray[i]=Integer.toString(i);
 		}
+		
 	}
 	
 	public ContactData(String firstName, String lastName, String address,
