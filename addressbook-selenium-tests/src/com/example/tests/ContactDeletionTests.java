@@ -12,8 +12,6 @@ public class ContactDeletionTests extends TestBase {
 	
 	@Test
 	public void deleteSomeContact(){
-		app.getNavigationHelper().openMainPage();
-		
 		//get old contacts list
 	    List<ContactData> oldList = app.getContactHelper().getContacts();
 	    
@@ -24,20 +22,15 @@ public class ContactDeletionTests extends TestBase {
 	    	index++;
 	    }
 	    
-	    
-		app.getContactHelper().initContactEdit(index);
-		app.getContactHelper().deleteContact();
-		app.getNavigationHelper().returnToMainPage();
+		app.getContactHelper().deleteContact(index);
 		
 		//get new contacts list
 	    List<ContactData> newList = app.getContactHelper().getContacts();
 	    
 		//compare lists
-	    ContactData selectAll = oldList.get(oldList.size()-1);
-	    oldList.remove(selectAll);
 	    oldList.remove(index-1);
 	    Collections.sort(oldList);
-	    oldList.add(selectAll);
+	    Collections.sort(newList);
 	    assertEquals(oldList, newList);
 	}
 

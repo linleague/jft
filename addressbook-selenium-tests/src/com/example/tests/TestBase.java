@@ -40,6 +40,27 @@ public class TestBase {
 		
 	}
 	
+	public String randomDay(){
+		String[] bDayArray = new String[32];
+		bDayArray[0]="-";
+		for (int i=1;i<=31;i++) {
+			bDayArray[i]=Integer.toString(i);
+		}
+		Random rand = new Random();
+		String randomDay = String.valueOf(rand.nextInt(bDayArray.length));
+		return randomDay;
+	}
+	
+	public String randomMonth(){
+		String[] bMonthArray = {
+				"-", "January", "February", "March", "April", "May", "June",
+				"July", "August", "September", "October", "November", "December"
+		};
+		Random rand = new Random();
+		String randomMonth = bMonthArray[rand.nextInt(bMonthArray.length)];
+		return randomMonth;
+	}
+	
 	public String randomYear(){
 		Random rand = new Random();
 		String randomYear = String.valueOf(rand.nextInt(9999));
@@ -55,11 +76,11 @@ public class TestBase {
 	public Iterator<Object[]> randomValidGroupGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();
 		
-		for (int i = 0; i < 5; i++){
-			GroupData group = new GroupData();
-			group.name = returnRandomString();
-		    group.header = returnRandomString();
-		    group.footer = returnRandomString();
+		for (int i = 0; i < 1; i++){
+			GroupData group = new GroupData()
+			.withName(returnRandomString())
+			.withHeader(returnRandomString())
+			.withFooter(returnRandomString());
 		    list.add(new Object[]{group});
 		}
 		return list.iterator();
@@ -70,25 +91,23 @@ public class TestBase {
 	public Iterator<Object[]> randomValidContactGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();
 		
-		for (int i = 0; i < 5; i++){
-			ContactData contact = new ContactData();
-			Random rand = new Random();
-		    int randomDay = rand.nextInt(contact.bDayArray.length);
-		    int randomMonth = rand.nextInt(contact.bMonthArray.length);
-		    contact.firstName = returnRandomString();
-			contact.lastName = returnRandomString();
-			contact.address = returnRandomString();
-			contact.homePhone = returnRandomString();
-			contact.workPhone = returnRandomString();
-			contact.mobilePhone = returnRandomString();
-			contact.email = returnRandomString();
-			contact.email2 = returnRandomString();
-			contact.bDay = contact.bDayArray[randomDay];
-			contact.bMonth = contact.bMonthArray[randomMonth];
-			contact.bYear = randomYear();
-			//contact.groupName = "group1";
-			contact.address2 = returnRandomString();
-			contact.homePhone2 = returnRandomString();
+		for (int i = 0; i < 1; i++){
+
+			ContactData contact = new ContactData()
+			.withFirstName(returnRandomString())
+			.withLastName(returnRandomString())
+			.withAddress(returnRandomString())
+			.withHomePhone(returnRandomString())
+			.withWorkPhone(returnRandomString())
+			.withMobilePhone(returnRandomString())
+			.withEmail(returnRandomString())
+			.withEmail2(returnRandomString())
+			.withAddress2(returnRandomString())
+			.withHomePhone2(returnRandomString())
+			.withBDay(randomDay())
+			.withBMonth(randomMonth())
+			.withBYear(randomYear());
+			//.withGroup();
 		    list.add(new Object[]{contact});
 		}
 		return list.iterator();
@@ -99,32 +118,30 @@ public class TestBase {
 	public Iterator<Object[]> randomValidModifyContactGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();
 		
-		for (int i = 0; i < 5; i++){
+		for (int i = 0; i < 1; i++){
 			ContactData contact = new ContactData();
-			Random rand = new Random();
-		    int randomDay = rand.nextInt(contact.bDayArray.length);
-		    int randomMonth = rand.nextInt(contact.bMonthArray.length);
-			
 			Field stringFieldsArray[] = contact.getClass().getDeclaredFields();
+			Random rand = new Random();
 			int randomField = rand.nextInt(stringFieldsArray.length);
-			Field c = stringFieldsArray[randomField];
+			Field f = stringFieldsArray[randomField];
+			f.setAccessible(true);
 			
 			try {
-				String fieldName = c.getName();
+				String fieldName = f.getName();
 				switch (fieldName){
-				default: c.set(contact, returnRandomString());
+				default: f.set(contact, returnRandomString());
 					break;
 				case "bDay":
-					contact.bDay = contact.bDayArray[randomDay];
+					contact = contact.withBDay(randomDay());
 					break;
 				case "bMonth":
-					contact.bMonth = contact.bMonthArray[randomMonth];
+					contact = contact.withBMonth(randomMonth());
 					break;
 				case "bYear":
-					contact.bYear = randomYear();
+					contact = contact.withBYear(randomYear());
 					break;
 				case "groupName":
-					contact.groupName = "";
+					contact = contact.withGroup("");
 					break;
 				}
 			} catch (IllegalArgumentException e) {

@@ -1,34 +1,24 @@
 package com.example.tests;
 
 
+
 public class ContactData implements Comparable<ContactData>{
-	public String firstName;
-	public String lastName;
-	public String address;
-	public String homePhone;
-	public String mobilePhone;
-	public String workPhone;
-	public String email;
-	public String email2;
-	public String bDay;
-	public String[] bDayArray;
-	public String bMonth;
-	public String[] bMonthArray = {
-			"-", "January", "February", "March", "April", "May", "June",
-			"July", "August", "September", "October", "November", "December"
-	};
-	public String bYear;
-	public String groupName;
-	public String address2;
-	public String homePhone2;
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String homePhone;
+	private String mobilePhone;
+	private String workPhone;
+	private String email;
+	private String email2;
+	private String bDay;
+	private String bMonth;
+	private String bYear;
+	private String groupName;
+	private String address2;
+	private String homePhone2;
 
 	public ContactData() {
-		bDayArray = new String[32];
-		bDayArray[0]="-";
-		for (int i=1;i<=31;i++) {
-			bDayArray[i]=Integer.toString(i);
-		}
-		
 	}
 	
 	public ContactData(String firstName, String lastName, String address,
@@ -97,6 +87,132 @@ public class ContactData implements Comparable<ContactData>{
 		}
 		return o;
 	}
+
+	public ContactData withFirstName(String firstName) {
+		this.firstName = firstName;
+		return this;
+	}
+
+	public ContactData withLastName(String lastName) {
+		this.lastName = lastName;
+		return this;
+	}
+
+	public ContactData withAddress(String address) {
+		this.address = address;
+		return this;
+	}
+
+	public ContactData withHomePhone(String homePhone) {
+		this.homePhone = homePhone;
+		return this;
+	}
+
+	public ContactData withWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
+		return this;
+	}
+
+	public ContactData withMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+		return this;
+	}
+
+	public ContactData withEmail(String email) {
+		this.email = email;
+		return this;
+	}
+
+	public ContactData withEmail2(String email2) {
+		this.email2 = email2;
+		return this;
+	}
+
+	public ContactData withAddress2(String address2) {
+		this.address2 = address2;
+		return this;
+	}
+
+	public ContactData withHomePhone2(String homePhone2) {
+		this.homePhone2 = homePhone2;
+		return this;
+	}
+
+	public ContactData withBDay(String bDay) {
+	    this.bDay = bDay;
+		return this;
+	}
 	
+	public ContactData withBMonth(String bMonth) {
+	    this.bMonth = bMonth;
+		return this;
+	}
+	
+	public ContactData withBYear(String bYear) {
+		this.bYear = bYear;
+		return this;
+	}
+
+	public ContactData withGroup(String groupName) {
+	    this.groupName = groupName;
+		return this;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getHomePhone() {
+		return homePhone;
+	}
+
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public String getWorkPhone() {
+		return workPhone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getEmail2() {
+		return email2;
+	}
+
+	public String getbDay() {
+		return bDay;
+	}
+
+	public String getbMonth() {
+		return bMonth;
+	}
+
+	public String getbYear() {
+		return bYear;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public String getHomePhone2() {
+		return homePhone2;
+	}
+
 	
 }

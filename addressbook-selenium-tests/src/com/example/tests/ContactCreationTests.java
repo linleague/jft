@@ -2,35 +2,28 @@ package com.example.tests;
 
 import static org.testng.Assert.assertEquals;
 
-import org.testng.annotations.Test;
-
 import java.util.Collections;
 import java.util.List;
+
+import org.testng.annotations.Test;
 
 public class ContactCreationTests extends TestBase {
   
 	@Test(dataProvider = "randomValidContactGenerator")
 	public void testContactCreationWithValidData(ContactData contact) throws Exception {
-	    app.getNavigationHelper().openMainPage();	  
-	    
-	    //get old contacts list
+	     //get old contacts list
 	    List<ContactData> oldList = app.getContactHelper().getContacts();
 	    
 	    //actions
-		app.getContactHelper().initNewContactCreation();
-		app.getContactHelper().fillInContactForm(contact);
-		app.getContactHelper().submitContactInfo();
-		app.getNavigationHelper().returnToMainPage();
+	    app.getContactHelper().createContact(contact);
 		
 		//get new contacts list
 	    List<ContactData> newList = app.getContactHelper().getContacts();
 	    
 		//compare lists
-	    ContactData selectAll = oldList.get(oldList.size()-1);
-	    oldList.remove(selectAll);
 	    oldList.add(contact);
 	    Collections.sort(oldList);
-	    oldList.add(selectAll);
+	    Collections.sort(newList);
 	    assertEquals(oldList, newList);
 	}
 	
