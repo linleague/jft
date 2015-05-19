@@ -61,9 +61,9 @@ public class TestBase {
 		return randomMonth;
 	}
 	
-	public String randomYear(){
+	public String randomYear(int start, int end){
 		Random rand = new Random();
-		String randomYear = String.valueOf(rand.nextInt(9999));
+		String randomYear = String.valueOf(rand.nextInt(end - start +1) + start);
 		if (rand.nextInt(4) == 0){
 			return "";
 		}
@@ -106,7 +106,7 @@ public class TestBase {
 			.withHomePhone2(returnRandomString())
 			.withBDay(randomDay())
 			.withBMonth(randomMonth())
-			.withBYear(randomYear());
+			.withBYear(randomYear(1900, 2015));
 			//.withGroup();
 		    list.add(new Object[]{contact});
 		}
@@ -118,7 +118,7 @@ public class TestBase {
 	public Iterator<Object[]> randomValidModifyContactGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();
 		
-		for (int i = 0; i < 1; i++){
+		for (int i = 0; i < 3; i++){
 			ContactData contact = new ContactData();
 			Field stringFieldsArray[] = contact.getClass().getDeclaredFields();
 			Random rand = new Random();
@@ -138,7 +138,7 @@ public class TestBase {
 					contact = contact.withBMonth(randomMonth());
 					break;
 				case "bYear":
-					contact = contact.withBYear(randomYear());
+					contact = contact.withBYear(randomYear(1900, 2015));
 					break;
 				case "groupName":
 					contact = contact.withGroup("");
