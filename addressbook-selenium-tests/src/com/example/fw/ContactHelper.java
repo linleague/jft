@@ -110,7 +110,7 @@ public class ContactHelper extends HelperBase {
 	public ContactHelper submitContactInfo() {
 		// submit contact info
 	    click(By.name("submit"));
-	    cachedContacts = null;
+	    //cachedContacts = null;
 	    return this;
 	}
 
@@ -124,7 +124,7 @@ public class ContactHelper extends HelperBase {
 		//By.name is retained specifically here to check test behavior
 		//click(By.xpath("//input[@value='Update']"));
 		click(By.name("update"));
-		cachedContacts = null;
+		//cachedContacts = null;
 		return this;
 	}
 
