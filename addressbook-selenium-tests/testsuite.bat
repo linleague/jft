@@ -1,0 +1,3 @@
+ECHO running testNG custom suite...
+
+java -cp bin;C:\Users\mlebedeva\Documents\My_Programs\xstream-1.4.8\lib\xstream-1.4.8.jar;C:\Users\mlebedeva\Documents\My_Programs\xstream-1.4.8\lib\xstream\xpp3_min-1.1.4c.jar;C:\Users\mlebedeva\Documents\My_Programs\xstream-1.4.8\lib\xstream\xmlpull-1.1.3.1.jar;C:\Users\mlebedeva\Downloads\selenium-server-standalone-2.45.0.jar -DconfigFile=firefox.properties org.testng.TestNG testng-customsuite.xml
