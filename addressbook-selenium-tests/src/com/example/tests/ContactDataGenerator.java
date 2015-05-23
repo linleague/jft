@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.*;
 
 import static com.example.tests.TestBase.returnRandomString;
 import static com.example.tests.TestBase.randomDay;
