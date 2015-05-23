@@ -1,0 +1,38 @@
+<list>
+  <contact>
+    <firstName>test685</firstName>
+    <lastName>test380</lastName>
+    <address>test197
+    ZIP
+    State
+    Suite#</address>
+    <homePhone></homePhone>
+    <mobilePhone>test218</mobilePhone>
+    <workPhone>test85</workPhone>
+    <email></email>
+    <email2></email2>
+    <bDay>4</bDay>
+    <bMonth>-</bMonth>
+    <bYear>1911</bYear>
+    <address2></address2>
+    <homePhone2>test868</homePhone2>
+  </contact>
+  <contact>
+    <firstName>test25</firstName>
+    <lastName>test479</lastName>
+    <address>test318</address>
+    <homePhone>test932</homePhone>
+    <mobilePhone>test737</mobilePhone>
+    <workPhone></workPhone>
+    <email></email>
+    <email2></email2>
+    <bDay>12</bDay>
+    <bMonth>July</bMonth>
+    <bYear>1927</bYear>
+    <address2>
+    NJ Wyckoff
+    11307
+    Suite # 33096</address2>
+    <homePhone2>test778</homePhone2>
+  </contact>
+</list>

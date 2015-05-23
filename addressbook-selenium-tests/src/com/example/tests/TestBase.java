@@ -1,5 +1,6 @@
 package com.example.tests;
 
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,6 +14,7 @@ import org.testng.annotations.DataProvider;
 import com.example.fw.ApplicationManager;
 
 import static com.example.tests.GroupDataGenerator.generateRandomGroups;
+import static com.example.tests.ContactDataGenerator.generateRandomContacts;
 
 
 public class TestBase {
@@ -32,18 +34,18 @@ public class TestBase {
 
 	  }
 
-	public String returnRandomString(){
+	public static String returnRandomString(){
 		Random rnd = new Random();
 		if (rnd.nextInt(4) == 0){
 			return "";
 		}
 		else {
-			return "test" + rnd.nextInt(100);
+			return "test" + rnd.nextInt(1000);
 		}
 		
 	}
 	
-	public String randomDay(){
+	public static String randomDay(){
 		String[] bDayArray = new String[32];
 		bDayArray[0]="-";
 		for (int i=1;i<=31;i++) {
@@ -54,7 +56,7 @@ public class TestBase {
 		return randomDay;
 	}
 	
-	public String randomMonth(){
+	public static String randomMonth(){
 		String[] bMonthArray = {
 				"-", "January", "February", "March", "April", "May", "June",
 				"July", "August", "September", "October", "November", "December"
@@ -64,7 +66,7 @@ public class TestBase {
 		return randomMonth;
 	}
 	
-	public String randomYear(int start, int end){
+	public static String randomYear(int start, int end){
 		Random rand = new Random();
 		String randomYear = String.valueOf(rand.nextInt(end - start +1) + start);
 		if (rand.nextInt(4) == 0){
@@ -89,32 +91,18 @@ public class TestBase {
 	}
 
 	@DataProvider
-	public Iterator<Object[]> randomValidContactGenerator(){
-		List<Object[]> list = new ArrayList<Object[]>();
-		
-		for (int i = 0; i < 1; i++){
-
-			ContactData contact = new ContactData()
-			.withFirstName(returnRandomString())
-			.withLastName(returnRandomString())
-			.withAddress(returnRandomString())
-			.withHomePhone(returnRandomString())
-			.withWorkPhone(returnRandomString())
-			.withMobilePhone(returnRandomString())
-			.withEmail(returnRandomString())
-			.withEmail2(returnRandomString())
-			.withAddress2(returnRandomString())
-			.withHomePhone2(returnRandomString())
-			.withBDay(randomDay())
-			.withBMonth(randomMonth())
-			.withBYear(randomYear(1900, 2015));
-			//.withGroup();
-		    list.add(new Object[]{contact});
-		}
-		return list.iterator();
-		
+	public Iterator<Object[]> randomValidContactGenerator() throws IOException{
+		return wrapContactsForDataProvider(generateRandomContacts(3)).iterator();
 	}
 	
+	public static List<Object[]> wrapContactsForDataProvider(List<ContactData> contacts) {
+		List<Object[]> list = new ArrayList<Object[]>();
+		for (ContactData contact : contacts){
+			list.add(new Object[]{contact});
+		}
+		return list;
+	}
+
 	@DataProvider
 	public Iterator<Object[]> randomValidModifyContactGenerator(){
 		List<Object[]> list = new ArrayList<Object[]>();

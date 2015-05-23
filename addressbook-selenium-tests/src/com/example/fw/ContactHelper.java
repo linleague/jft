@@ -130,7 +130,7 @@ public class ContactHelper extends HelperBase {
 
 	public ContactHelper returnToMainPage() {
 		//return to main page
-	    click(By.linkText("home"));
+	    click(By.partialLinkText("home"));
 	    return this;
 	}
 

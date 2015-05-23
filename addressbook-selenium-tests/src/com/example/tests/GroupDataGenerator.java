@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.example.tests.TestBase.returnRandomString;
+
 import com.thoughtworks.xstream.XStream;
 
 public class GroupDataGenerator {
@@ -75,16 +77,6 @@ public class GroupDataGenerator {
 		return list;
 	}
 
-	public static String returnRandomString(){
-		Random rnd = new Random();
-		if (rnd.nextInt(4) == 0){
-			return "";
-		}
-		else {
-			return "test" + rnd.nextInt(1000);
-		}
-	}
-	
 	public static List<GroupData> generateRandomGroups(int amount) {
 		List<GroupData> list = new ArrayList<GroupData>();		
 		for (int i = 0; i < amount; i++){
