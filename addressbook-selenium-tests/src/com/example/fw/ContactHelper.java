@@ -115,7 +115,7 @@ public class ContactHelper extends HelperBase {
 	}
 
 	public ContactHelper initContactEdit(int index) {
-		click(By.xpath("//table[@id='maintable']/tbody/tr[" + (index+1) + "]/td[7]"));
+		click(By.xpath("//table[@id='maintable']/tbody/tr[" + (index+1) + "]/td[7]/a"));
 		return this;
 		
 	}
@@ -130,7 +130,7 @@ public class ContactHelper extends HelperBase {
 
 	public ContactHelper returnToMainPage() {
 		//return to main page
-	    click(By.partialLinkText("home"));
+	    click(By.xpath("//a[text()='home']"));
 	    return this;
 	}
 
