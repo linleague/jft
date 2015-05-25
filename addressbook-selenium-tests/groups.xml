@@ -1,7 +1,12 @@
 <list>
-  <com.example.tests.GroupData>
-    <name></name>
-    <header>test41</header>
+  <group>
+    <name>test545</name>
+    <header>test12</header>
     <footer></footer>
-  </com.example.tests.GroupData>
+  </group>
+  <group>
+    <name></name>
+    <header>test25</header>
+    <footer>test311</footer>
+  </group>
 </list>
