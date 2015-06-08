@@ -16,6 +16,9 @@ public class ProcessHelper extends HelpersBase {
 	}
 
 	public void stopAppUnderTest(){
-		process.destroy();
+		manager.getAutoItHelper()
+			.winWaitAndActivate("AddressBook Portable", "", 5000)
+			.click("Exit");
+		//process.destroy();
 	}
 }

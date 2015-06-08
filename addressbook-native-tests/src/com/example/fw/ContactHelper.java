@@ -34,18 +34,41 @@ public class ContactHelper extends HelpersBase {
 	}
 
 	public Contact getFirstContact() {
-		manager.getAutoItHelper()
-			.winWaitAndActivate("AddressBook Portable", "", 5000)
-			.click("TListView1")
-			.send("{DOWN}{SPACE}")
-			.click("Edit")
-			.winWaitAndActivate("Update Contact", "", 5000);
+		editContact();
 		Contact contact = new Contact()
 			.setFirstName(manager.getAutoItHelper().getText("TDBEdit12"))
 			.setLastName(manager.getAutoItHelper().getText("TDBEdit11"));
 		manager.getAutoItHelper().click("Cancel")
 		.winWaitAndActivate("AddressBook Portable", "", 5000);
 		return contact;
+		
+	}
+
+	public void editContact() {
+		if (!cannotEditContact()) {
+			manager.getAutoItHelper().winWaitAndActivate("Update Contact", "", 5000);
+		}
+		 new Error ("No contact to edit");
+	}
+
+	public void removeContact() {
+		manager.getAutoItHelper()
+			.winWaitAndActivate("AddressBook Portable", "", 5000)
+			.click("TListView1")
+			.send("{DOWN}{SPACE}")
+   			.click("Delete")
+			.winWaitAndActivate("Confirm", "", 5000)
+			.click("&Yes")
+			.winWaitAndActivate("AddressBook Portable", "", 5000);
+	}
+
+	public boolean cannotEditContact() {
+		manager.getAutoItHelper()
+		.winWaitAndActivate("AddressBook Portable", "", 5000)
+		.click("TListView1")
+		.send("{DOWN}{SPACE}")
+ 		.click("Edit");
+		return manager.getAutoItHelper().winExist("Information");
 		
 	}
 }
