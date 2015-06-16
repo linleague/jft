@@ -11,39 +11,31 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class ApplicationManager {
 	
-	public WebDriver driver;
+	private WebDriver driver;
 	public String baseUrl;
 	
 	private NavigationHelper navigationHelper;
 	private GroupHelper groupHelper;
 	public ContactHelper contactHelper;
 	private Properties properties;
+	private HibernateHelper hibernateHelper;
+	
+	private ApplicationModel model;
 	
 	public ApplicationManager(Properties properties){
 	    this.properties = properties;
-	    String browser = properties.getProperty("browser");
-	    if ("firefox".equals(browser)) {
-	    	driver = new FirefoxDriver();
-	    } else if ("ie".equals(browser)) {
-	    	File file = new File("C:\\Users\\mlebedeva\\Documents\\GitHub\\jft\\IEDriverServer.exe");
-	    	System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
-	    	driver = new InternetExplorerDriver();
-	    } else if("chrome".equals(browser)){
-	    	File file = new File("C:\\Users\\mlebedeva\\Documents\\GitHub\\jft\\chromedriver.exe");
-	    	System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
-	    	driver = new ChromeDriver();
-	    } else {
-	    	throw new Error("Unsupported browser: " + browser);
-	    }
-	    baseUrl = properties.getProperty("baseUrl");
-	    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-	    driver.get(baseUrl);
+	    model = new ApplicationModel();
+	    model.setGroups(getHibernateHelper().listGroups());
 	}
 
 	public void stop() {
 		driver.quit();
 	  }
 
+	public ApplicationModel getModel() {
+		return model;
+	}
+	
 	public NavigationHelper navigateTo(){
 		if (navigationHelper == null) {
 			navigationHelper = new NavigationHelper(this);
@@ -63,8 +55,41 @@ public class ApplicationManager {
 			contactHelper = new ContactHelper(this);
 		}
 		return contactHelper;
+	}
+
+	public WebDriver getDriver() {
+		String browser = properties.getProperty("browser");
+		if (driver == null) {
+			if ("firefox".equals(browser)) {
+		    	driver = new FirefoxDriver();
+		    } else if ("ie".equals(browser)) {
+		    	File file = new File("C:\\Users\\mlebedeva\\Documents\\GitHub\\jft\\IEDriverServer.exe");
+		    	System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
+		    	driver = new InternetExplorerDriver();
+		    } else if("chrome".equals(browser)){
+		    	File file = new File("C:\\Users\\mlebedeva\\Documents\\GitHub\\jft\\chromedriver.exe");
+		    	System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+		    	driver = new ChromeDriver();
+		    } else {
+		    	throw new Error("Unsupported browser: " + browser);
+		    }
+		    baseUrl = properties.getProperty("baseUrl");
+		    driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		    driver.get(baseUrl);
+		}
+		return driver;
+	}
+
+	public HibernateHelper getHibernateHelper() {
+		if (hibernateHelper == null) {
+			hibernateHelper = new HibernateHelper(this);
+		}
+		return hibernateHelper;
 	}	
 
+	public String getProperty(String key){
+		return properties.getProperty(key);
+	}
 
 
 }
