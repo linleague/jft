@@ -1,12 +1,12 @@
 <list>
   <group>
-    <name>test545</name>
-    <header>test12</header>
+    <name>My group</name>
+    <header>H1</header>
     <footer></footer>
   </group>
   <group>
-    <name></name>
-    <header>test25</header>
-    <footer>test311</footer>
+    <name>Your group</name>
+    <header>H2</header>
+    <footer>F3</footer>
   </group>
 </list>
