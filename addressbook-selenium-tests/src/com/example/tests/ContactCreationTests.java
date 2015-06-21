@@ -24,13 +24,13 @@ public class ContactCreationTests extends TestBase {
 	@Test(dataProvider = "contactsFromFile")
 	public void testContactCreationWithValidData(ContactData contact) throws Exception {
 	     //get old contacts list
-		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> oldList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();
 	    
 	    //actions
 	    app.getContactHelper().createContact(contact);
 		
 		//get new contacts list
-	    SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
+	    SortedListOf<ContactData> newList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();
 	    
 		//compare lists
 	    assertThat(newList, equalTo(oldList.withAdded(contact)));

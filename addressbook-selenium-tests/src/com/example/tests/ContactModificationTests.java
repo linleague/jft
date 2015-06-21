@@ -14,7 +14,7 @@ public class ContactModificationTests extends TestBase {
 	@Test(dataProvider = "randomValidModifyContactGenerator")
 	public void modifySomeContact(ContactData contact){
 		//get old contacts list
-		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> oldList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();
 	    
 	    //actions
 	    Random rnd = new Random();
@@ -27,7 +27,7 @@ public class ContactModificationTests extends TestBase {
 
 		
 		//get new contacts list
-	    SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
+	    SortedListOf<ContactData> newList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();
 	    
 	    //procedure to create valid contact for list comparison
 	    if (contact.getLastName() == null){

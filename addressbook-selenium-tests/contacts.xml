@@ -1,28 +1,28 @@
 <list>
   <contact>
-    <firstName>test685</firstName>
-    <lastName>test380</lastName>
-    <address>test197
+    <firstName>Mary</firstName>
+    <lastName>Jane</lastName>
+    <address>USA
     ZIP
     State
     Suite#</address>
     <homePhone></homePhone>
-    <mobilePhone>test218</mobilePhone>
-    <workPhone>test85</workPhone>
+    <mobilePhone>222-33-55</mobilePhone>
+    <workPhone>333-55-99</workPhone>
     <email></email>
     <email2></email2>
     <bDay>4</bDay>
     <bMonth>-</bMonth>
     <bYear>1911</bYear>
     <address2></address2>
-    <homePhone2>test868</homePhone2>
+    <homePhone2>777-00-33</homePhone2>
   </contact>
   <contact>
-    <firstName>test25</firstName>
-    <lastName>test479</lastName>
-    <address>test318</address>
-    <homePhone>test932</homePhone>
-    <mobilePhone>test737</mobilePhone>
+    <firstName>John</firstName>
+    <lastName>Snow</lastName>
+    <address>Icewall</address>
+    <homePhone>555</homePhone>
+    <mobilePhone>333</mobilePhone>
     <workPhone></workPhone>
     <email></email>
     <email2></email2>
@@ -33,6 +33,6 @@
     NJ Wyckoff
     11307
     Suite # 33096</address2>
-    <homePhone2>test778</homePhone2>
+    <homePhone2>444</homePhone2>
   </contact>
 </list>

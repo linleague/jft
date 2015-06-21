@@ -1,5 +1,9 @@
 .recommenders/
 .metadata/
+hibernate-release-4.1.9.Final/
+addressbook-selenium-tests/test-output/
+addressbook-native-tests/test-output/
+addressbook-java-tests/test-output/
 *.class
 
 # Mobile Tools for Java (J2ME)

@@ -14,7 +14,7 @@ public class ContactDeletionTests extends TestBase {
 	@Test
 	public void deleteSomeContact(){
 		//get old contacts list
-		SortedListOf<ContactData> oldList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> oldList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();
 	    
 	    //actions
 	    Random rnd = new Random();
@@ -26,7 +26,7 @@ public class ContactDeletionTests extends TestBase {
 		app.getContactHelper().deleteContact(index);
 		
 		//get new contacts list
-		SortedListOf<ContactData> newList = app.getContactHelper().getContacts();
+		SortedListOf<ContactData> newList = (SortedListOf<ContactData>) app.getHibernateHelper().listContacts();
 	    
 		//compare lists
 		assertThat(newList, equalTo(oldList.without(index-1)));
